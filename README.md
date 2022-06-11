@@ -3,10 +3,9 @@
 @@ Base Module Tutorial @@:
 ```
 1. ADS
-```diff
   + Base Abtract AdsApplication
   + Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
- ```
+  
           <com.mmgsoft.modules.libs.widgets.BannerAds
             android:id="@+id/banner_ads"
             android:layout_alignParentBottom="true"
@@ -14,11 +13,9 @@
             android:layout_height="wrap_content"
             app:ba_adsUnitId="@string/banner_ad_unit_id"
             app:ba_autoLoad="true"/>
-```diff
   + ba_autoLoad:
     + true: auto load banner ads
     + false: non auto
-```
 2. PurchaseView
 
         <com.mmgsoft.modules.libs.widgets.PurchaseView
