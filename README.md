@@ -1,6 +1,6 @@
 # ADSLibrary
 Base Module Tutorial:
-1. _ADS
+1. ADS
   - Sử dụng lại AdsApplication
   - Sử dụng phương thức ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
  
@@ -15,7 +15,7 @@ Base Module Tutorial:
     - true: view sẽ tự load banner
     - false: phải gọi vào view 1 func để load banner ads
 
-2. _PurchaseView
+2. PurchaseView
 
         <com.mmgsoft.modules.libs.widgets.PurchaseView
           android:id="@+id/purchaseView"
@@ -28,7 +28,7 @@ Base Module Tutorial:
   - pv_orientation (vertical/horizontal)
   - pv_spanCount (Khi ở dạng grid mới chấp nhận trường này!)
 
-3. _Purchase Activity
+3. Purchase Activity
 - static function _open()
 
         open(ctx: Context,
