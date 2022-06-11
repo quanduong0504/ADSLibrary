@@ -1,6 +1,6 @@
 # ADSLibrary
 ```diff
-@@Base Module Tutorial@@:
+@@ Base Module Tutorial @@:
 1. ADS
   + Base Abtract AdsApplication
   + Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
@@ -30,7 +30,7 @@
   + pv_spanCount (like spanCount GridLayoutManager)
 
 3. Purchase Activity
-  + static function _open()
+  + static function @@ open() @@
 
         open(ctx: Context,
                  theme: ActionBarTheme,
