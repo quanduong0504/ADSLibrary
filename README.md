@@ -61,4 +61,3 @@
   + colorTitleToolbar/colorTitle : title text color
   + layoutSubs: resLayoutID with subs type
   + layoutInApp: resLayoutID with inApp type
-```
