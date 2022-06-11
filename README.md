@@ -1,5 +1,5 @@
 # ADSLibrary
-Base Module Tutorial:
+@@Base Module Tutorial@@:
 1. ADS
   - Base Abtract AdsApplication
   - Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
