@@ -1,8 +1,8 @@
 # ADSLibrary
 Base Module Tutorial:
 1. ADS
-  - Sử dụng lại AdsApplication
-  - Sử dụng phương thức ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
+  - Base Abtract AdsApplication
+  - Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
  
           <com.mmgsoft.modules.libs.widgets.BannerAds
             android:id="@+id/banner_ads"
@@ -12,8 +12,8 @@ Base Module Tutorial:
             app:ba_adsUnitId="@string/banner_ad_unit_id"
             app:ba_autoLoad="true"/>
   - ba_autoLoad:
-    - true: view sẽ tự load banner
-    - false: phải gọi vào view 1 func để load banner ads
+    - true: auto load banner ads
+    - false: non auto
 
 2. PurchaseView
 
@@ -26,7 +26,7 @@ Base Module Tutorial:
           app:pv_orientation="vertical" />
   - pv_layoutManager (list/grid)
   - pv_orientation (vertical/horizontal)
-  - pv_spanCount (Khi ở dạng grid mới chấp nhận trường này!)
+  - pv_spanCount (like spanCount GridLayoutManager)
 
 3. Purchase Activity
 - static function _open()
@@ -55,9 +55,8 @@ Base Module Tutorial:
           
           open(ctx: Context, theme: ActionBarTheme, @ColorRes colorHeader: Int, @ColorRes colorTitle: Int)
           
-- theme: Xác định theme (màu chữ ở action bar)
-- colorToolbar/colorHeader : Màu background thanh toolbar
-- colorTitleToolbar/colorTitle : Màu chữ title
-- layoutSubs: resLayoutID cho loại subss 
-- layoutInApp: resLayoutID cho loại inApp
-- Lưu ý các id trong 2 loại resId này cần giống với id của màn cũ
+- theme: text color in actionbar
+- colorToolbar/colorHeader : toolbar background color
+- colorTitleToolbar/colorTitle : title text color
+- layoutSubs: resLayoutID with subs type
+- layoutInApp: resLayoutID with inApp type
