@@ -1,4 +1,4 @@
-# RateLibrary
+# ADSLibrary
 Base Module Tutorial:
 1. _ADS
   - Sử dụng lại AdsApplication
