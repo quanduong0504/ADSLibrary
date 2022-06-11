@@ -30,7 +30,7 @@
   - pv_spanCount (like spanCount GridLayoutManager)
 
 3. Purchase Activity
-- static function _open()
++ static function _open()
 
         open(ctx: Context,
                  theme: ActionBarTheme,
@@ -56,9 +56,9 @@
           
           open(ctx: Context, theme: ActionBarTheme, @ColorRes colorHeader: Int, @ColorRes colorTitle: Int)
           
-- theme: text color in actionbar
-- colorToolbar/colorHeader : toolbar background color
-- colorTitleToolbar/colorTitle : title text color
-- layoutSubs: resLayoutID with subs type
-- layoutInApp: resLayoutID with inApp type
++ theme: text color in actionbar
++ colorToolbar/colorHeader : toolbar background color
++ colorTitleToolbar/colorTitle : title text color
++ layoutSubs: resLayoutID with subs type
++ layoutInApp: resLayoutID with inApp type
 ```
