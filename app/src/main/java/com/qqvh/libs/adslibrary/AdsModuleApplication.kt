@@ -13,6 +13,10 @@ class AdsModuleApplication : AdsApplication() {
     override val prodSubsIds: List<String>
         get() = listOf()
 
+    override fun onCreated() {
+
+    }
+
     override fun getStateBilling(): StateAfterBuy {
         return StateAfterBuy.DISABLE
     }

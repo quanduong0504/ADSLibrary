@@ -12,6 +12,7 @@ class BannerAds @JvmOverloads constructor(
 ) : LinearLayout(context, attrs) {
     private var adsUnitId: String? = null
     private var isAutoLoad = false
+    private var isCloseAd = false
 
     init {
         val typeArray = context.obtainStyledAttributes(attrs, R.styleable.BannerAds)
@@ -23,13 +24,24 @@ class BannerAds @JvmOverloads constructor(
     }
 
     private fun initViews() {
-        if(!adsUnitId.isNullOrBlank() && isAutoLoad) {
+        if(!adsUnitId.isNullOrBlank() && isAutoLoad && !isCloseAd) {
             loadBanner(adsUnitId!!)
         }
     }
 
     fun load(adsUnitId: String) {
-        if(!isAutoLoad) loadBanner(adsUnitId)
+        if(!isAutoLoad && !isCloseAd) loadBanner(adsUnitId)
+    }
+
+    fun load() {
+        if(!isAutoLoad && !adsUnitId.isNullOrBlank() && !isCloseAd) {
+            loadBanner(adsUnitId!!)
+        }
+    }
+
+    fun close() {
+        isCloseAd = true
+        this.visibility = View.GONE
     }
 
     private fun loadBanner(adsUnitId: String) {
