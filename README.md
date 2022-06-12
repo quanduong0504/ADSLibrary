@@ -4,7 +4,9 @@
 ```
 1. ADS
   + Base Abtract AdsApplication
-  + Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
+  + Intertitial ADS: 
+    + Use func ((AdsApplication) getApplicationContext()).getAdsManager().forceShowInterstitial(Activity.this, AdsUnitString, () -> { }
+  + Banner ADS:
   
           <com.mmgsoft.modules.libs.widgets.BannerAds
             android:id="@+id/banner_ads"
