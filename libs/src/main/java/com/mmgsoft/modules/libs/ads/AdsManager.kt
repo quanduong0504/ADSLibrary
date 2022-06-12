@@ -12,6 +12,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.mmgsoft.modules.libs.AdsConstant
 import com.mmgsoft.modules.libs.dialog.PrepareLoadingAdsDialog
 import com.mmgsoft.modules.libs.etx.gone
 import com.mmgsoft.modules.libs.etx.visible
@@ -36,6 +37,10 @@ class AdsManager {
     }
 
     private fun showInterstitialWithCount(act: Activity, adsUnitId: String, closeAd: () -> Unit) {
+        if(!AdsConstant.isLoadADS) {
+            closeAd.invoke()
+            return
+        }
         val dialog = createDialogFullScreen(act)
         dialog.show()
 
@@ -53,6 +58,10 @@ class AdsManager {
     }
 
     fun forceShowInterstitial(act: Activity, adsUnitId: String, adClosed: () -> Unit) {
+        if(!AdsConstant.isLoadADS) {
+            adClosed.invoke()
+            return
+        }
         val dialog = createDialogFullScreen(act)
         dialog.show()
 

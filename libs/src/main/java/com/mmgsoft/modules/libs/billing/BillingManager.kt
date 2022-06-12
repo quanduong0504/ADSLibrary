@@ -6,6 +6,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.android.billingclient.api.*
+import com.mmgsoft.modules.libs.AdsConstant
 import com.mmgsoft.modules.libs.billing.RetryPolicies.connectionRetryPolicy
 import com.mmgsoft.modules.libs.billing.RetryPolicies.resetConnectionRetryPolicyCounter
 import com.mmgsoft.modules.libs.billing.RetryPolicies.taskExecutionRetryPolicy
@@ -164,6 +165,10 @@ object BillingManager {
                     listAvailable.remove(productDetail)
                 }
             }
+        }
+
+        productIds.find { it.contains(AdsConstant.SUBS_PKG1) }?.let {
+            AdsConstant.isLoadADS = false
         }
 
         withContext(Dispatchers.Main) {

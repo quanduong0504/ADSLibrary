@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import com.mmgsoft.modules.libs.AdsConstant
 import com.mmgsoft.modules.libs.R
 import com.mmgsoft.modules.libs.ads.AdsManager
 
@@ -45,6 +46,10 @@ class BannerAds @JvmOverloads constructor(
     }
 
     private fun loadBanner(adsUnitId: String) {
+        if(!AdsConstant.isLoadADS) {
+            close()
+            return
+        }
         AdsManager().showAdModBanner(context, adsUnitId, findViewById(R.id.bannerContainer), findViewById(R.id.shimmerContainerBanner))
     }
 }
