@@ -5,10 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.android.billingclient.api.*
 import com.mmgsoft.modules.libs.billing.RetryPolicies.connectionRetryPolicy
 import com.mmgsoft.modules.libs.billing.RetryPolicies.resetConnectionRetryPolicyCounter
 import com.mmgsoft.modules.libs.billing.RetryPolicies.taskExecutionRetryPolicy
-import com.android.billingclient.api.*
 import com.mmgsoft.modules.libs.helpers.BillingLoadingState
 import com.mmgsoft.modules.libs.helpers.BillingLoadingStateEvent
 import com.mmgsoft.modules.libs.helpers.StateAfterBuy
@@ -27,7 +27,7 @@ object BillingManager {
     val listAvailableObserver : MutableLiveData<MutableList<PurchaseProductDetails>> by lazy {
         MutableLiveData<MutableList<PurchaseProductDetails>>(mutableListOf())
     }
-    private var validPurchases = HashSet<Purchase>()
+    var validPurchases = HashSet<Purchase>()
     var skuHistoryList = listOf<PurchaseHistoryRecord>()
     var state = StateAfterBuy.DISABLE
 
@@ -85,7 +85,7 @@ object BillingManager {
     /**
      * Khởi tạo cho billingClient và set giá trị cho 2 thằng là SUBS và INAPP list
      */
-    fun init(context: Context, state: StateAfterBuy, productInAppIds: List<String>, productSubsIds: List<String>) {
+    fun init(context: Context, productInAppIds: List<String>, productSubsIds: List<String>, state: StateAfterBuy = StateAfterBuy.DISABLE) {
         this.state = state
         this.mProductInAppIds.clear()
         this.mProductInAppIds.addAll(productInAppIds)
