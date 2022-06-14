@@ -88,7 +88,11 @@ class AdsManager {
 
     private fun createDialogFullScreen(ctx: Context): Dialog = PrepareLoadingAdsDialog(ctx)
 
-    fun showAdModBanner(context: Context, adsUnitId: String, adContainer: FrameLayout, shimmerFrameLayout: ShimmerFrameLayout) {
+    fun showAdModBanner(context: Context,
+                        adsUnitId: String,
+                        adContainer: FrameLayout,
+                        shimmerFrameLayout: ShimmerFrameLayout,
+                        onLoadFailed: () -> Unit) {
         shimmerFrameLayout.visible()
         shimmerFrameLayout.startShimmer()
 
@@ -112,6 +116,7 @@ class AdsManager {
                 shimmerFrameLayout.stopShimmer()
                 adContainer.gone()
                 shimmerFrameLayout.gone()
+                onLoadFailed.invoke()
             }
         }
     }
