@@ -86,7 +86,10 @@ object BillingManager {
     /**
      * Khởi tạo cho billingClient và set giá trị cho 2 thằng là SUBS và INAPP list
      */
-    fun init(context: Context, productInAppIds: List<String>, productSubsIds: List<String>, state: StateAfterBuy = StateAfterBuy.DISABLE) {
+    fun init(context: Context,
+             productInAppIds: List<String>,
+             productSubsIds: List<String>,
+             state: StateAfterBuy = StateAfterBuy.DISABLE) {
         this.state = state
         this.mProductInAppIds.clear()
         this.mProductInAppIds.addAll(productInAppIds)
@@ -99,6 +102,15 @@ object BillingManager {
 //            .setUnderAgeOfConsent(BillingClient.UnderAgeOfConsent.UNDER_AGE_OF_CONSENT) /*For use Reward Product*/
             .build()
         connectToGooglePlayBillingService()
+    }
+
+    fun init(context: Context,
+             productInAppIds: List<String>,
+             productSubsIds: List<String>,
+             state: StateAfterBuy = StateAfterBuy.DISABLE,
+             keyCloseAds: String) {
+        AdsConstant.keyCloseAds = keyCloseAds
+        init(context, productInAppIds, productSubsIds, state)
     }
 
     private fun connectToGooglePlayBillingService() {
@@ -167,7 +179,7 @@ object BillingManager {
             }
         }
 
-        productIds.find { it.contains(AdsConstant.SUBS_PKG1) }?.let {
+        productIds.find { it.contains(AdsConstant.keyCloseAds) }?.let {
             AdsConstant.isLoadADS = false
         }
 
