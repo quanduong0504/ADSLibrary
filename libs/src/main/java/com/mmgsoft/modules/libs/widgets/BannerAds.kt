@@ -52,4 +52,11 @@ class BannerAds @JvmOverloads constructor(
         }
         AdsManager().showAdModBanner(context, adsUnitId, findViewById(R.id.bannerContainer), findViewById(R.id.shimmerContainerBanner))
     }
+
+    override fun onVisibilityChanged(changedView: View, visibility: Int) {
+        super.onVisibilityChanged(changedView, visibility)
+        if(!AdsConstant.isLoadAds(context)) {
+            close()
+        }
+    }
 }
