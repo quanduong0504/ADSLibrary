@@ -6,10 +6,13 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.android.billingclient.api.*
+import com.mmgsoft.modules.libs.AdsApplication
 import com.mmgsoft.modules.libs.AdsConstant
 import com.mmgsoft.modules.libs.billing.RetryPolicies.connectionRetryPolicy
 import com.mmgsoft.modules.libs.billing.RetryPolicies.resetConnectionRetryPolicyCounter
 import com.mmgsoft.modules.libs.billing.RetryPolicies.taskExecutionRetryPolicy
+import com.mmgsoft.modules.libs.helpers.AdsPrefs
+import com.mmgsoft.modules.libs.helpers.AdsPrefs.KEY_PREFS_IS_BILLING
 import com.mmgsoft.modules.libs.helpers.BillingLoadingState
 import com.mmgsoft.modules.libs.helpers.BillingLoadingStateEvent
 import com.mmgsoft.modules.libs.helpers.StateAfterBuy
@@ -19,6 +22,7 @@ import org.greenrobot.eventbus.EventBus
 
 @SuppressLint("LogNotTimber")
 object BillingManager {
+    private val mAllProductDetails = mutableListOf<ProductDetails>()
     private val scope = CoroutineScope(Dispatchers.Main + Job())
     private val mProductInAppIds = mutableListOf<String>()
     private val mProductSubsIds = mutableListOf<String>()
@@ -58,6 +62,7 @@ object BillingManager {
                     scope.launch {
                         Log.d(TAG, "onBillingSetupFinished(): Successfully")
                         resetConnectionRetryPolicyCounter()
+                        mAllProductDetails.clear()
                         listAvailable.clear()
                         if (getSkuListInApp().isNotEmpty()) querySkuDetailsAsync(getSkuListInApp())
                         if (getSkuListSubs().isNotEmpty()) querySkuDetailsAsync(getSkuListSubs())
@@ -179,12 +184,26 @@ object BillingManager {
             }
         }
 
-        productIds.find { it.contains(AdsConstant.keyCloseAds) }?.let {
-            AdsConstant.isLoadADS = false
-        }
-
+        checkIsBilling()
         withContext(Dispatchers.Main) {
             listAvailableObserver.postValue(listAvailable)
+        }
+    }
+
+    private fun checkIsBilling() {
+        mAllProductDetails.map {
+            if(it.productId.contains(AdsConstant.keyCloseAds)) {
+                putIsBilling(true)
+                return@map
+            }
+
+            putIsBilling(false)
+        }
+    }
+
+    private fun putIsBilling(isBilling: Boolean) {
+        AdsApplication.instance?.let {
+            AdsPrefs.putBoolean(it, AdsPrefs.KEY_PREFS_IS_BILLING, isBilling)
         }
     }
 
@@ -263,6 +282,7 @@ object BillingManager {
             when (billingResult.responseCode) {
                 BillingClient.BillingResponseCode.OK -> {
                     Log.d(TAG, "onSkuDetailsResponse(): OK $productDetails")
+                    mAllProductDetails.addAll(productDetails)
                     listAvailable.addAll(productDetails.mapToPurchaseProdDetails())
                     listAvailableObserver.postValue(listAvailable)
                 }

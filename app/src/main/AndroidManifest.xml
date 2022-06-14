@@ -3,6 +3,7 @@
     package="com.qqvh.libs.adslibrary">
 
     <application
+        android:name=".AdsModuleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

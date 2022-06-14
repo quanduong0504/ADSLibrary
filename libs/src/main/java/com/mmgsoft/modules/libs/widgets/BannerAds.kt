@@ -46,7 +46,7 @@ class BannerAds @JvmOverloads constructor(
     }
 
     private fun loadBanner(adsUnitId: String) {
-        if(!AdsConstant.isLoadADS) {
+        if(!AdsConstant.isLoadAds(context)) {
             close()
             return
         }
